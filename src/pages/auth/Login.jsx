@@ -65,11 +65,14 @@ const Login = () => {
       console.log('🟢 localStorage user:', localStorage.getItem('user'));
       
       toast.success('Welcome back!');
-      // Temporarily commented out for debugging - DO NOT NAVIGATE
-      navigate('/');
-      
-      console.log('🟢 Login process completed. Page should NOT refresh or navigate.');
-      console.log('🟢 If page refreshed, check for redirects in authStore or authService');
+
+      const userRole =
+        response?.data?.user?.role ??
+        response?.user?.role ??
+        useAuthStore.getState().user?.role;
+
+      const targetPath = userRole === 'admin' ? '/admin/products' : '/';
+      navigate(targetPath, { replace: true });
     } catch (error) {
       console.error('🔴 Login error:', error);
       console.error('🔴 Error response:', error.response?.data);

@@ -57,9 +57,16 @@ const Signup = () => {
 
     try {
       const { confirmPassword, ...registerData } = formData;
-      await register(registerData);
+      const data = await register(registerData);
       toast.success('Account created successfully! Welcome!');
-      navigate('/');
+
+      const userRole =
+        data?.user?.role ??
+        data?.data?.user?.role ??
+        useAuthStore.getState().user?.role;
+
+      const targetPath = userRole === 'admin' ? '/admin/products' : '/';
+      navigate(targetPath, { replace: true });
     } catch (error) {
       toast.error(error.response?.data?.message || 'Registration failed');
     }

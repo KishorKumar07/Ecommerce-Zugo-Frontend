@@ -41,7 +41,7 @@ npm install
 3. **Configure API endpoint**
 Update the API base URL in `src/config/api.js`:
 ```javascript
-export const API_BASE_URL = 'http://localhost:5000'; // Your backend URL
+export const API_BASE_URL = 'https://ecommerce-zugo-backend.onrender.com'; // Your backend URL
 ```
 
 4. **Run the development server**
@@ -49,7 +49,7 @@ export const API_BASE_URL = 'http://localhost:5000'; // Your backend URL
 npm run dev
 ```
 
-The app will be available at `http://localhost:3000`
+The app will be available at `https://ecommerce-zugo-frontend.vercel.app/`
 
 ## 🏗️ Build for Production
 
@@ -123,13 +123,7 @@ src/
 - Product image URL support
 - Real-time updates
 
-## 🔑 Environment Variables
 
-Create a `.env` file in the root directory (optional):
-
-```env
-VITE_API_BASE_URL=http://localhost:5000
-```
 
 ## 🎨 Customization
 

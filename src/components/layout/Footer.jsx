@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IoLogoGithub, IoLogoTwitter, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5';
+import { useAuthStore } from '../../store/authStore';
 
 const Footer = () => {
+  const { user } = useAuthStore();
+  const showCustomerOrbit = user?.role !== 'admin';
+
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-slate-950 text-slate-200 mt-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(56,189,248,0.08),_transparent_55%)] pointer-events-none" />
@@ -28,21 +32,23 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col items-center md:items-start space-y-3">
-            <h3 className="font-semibold text-lg text-white">Customer Orbit</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/orders" className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-100 transition">
-                  My Orders
-                </Link>
-              </li>
-              <li>
-                <Link to="/cart" className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-100 transition">
-                  Shopping Cart
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {showCustomerOrbit && (
+            <div className="flex flex-col items-center md:items-start space-y-3">
+              <h3 className="font-semibold text-lg text-white">Customer Orbit</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link to="/orders" className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-100 transition">
+                    My Orders
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/cart" className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-100 transition">
+                    Shopping Cart
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
 
           <div className="flex flex-col items-center md:items-start lg:items-center space-y-3">
             <h3 className="font-semibold text-lg text-white">Connect</h3>
